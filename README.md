@@ -10,10 +10,6 @@ commands such as arming and disarming of your alarm.
 
 # Install
 
-
-At this time I don't understand npm and node-red packages well enough to know how to make
-npm become aware of my github package... so I doubt this will work
-
 Run the following command in the root directory of your Node-RED install
 
     npm install node-red-contrib-envisalink-ademco
@@ -29,11 +25,14 @@ Please refer to the [TPI documentation] for a full list of commands.
 For example, to arm partition `1` using the code `9999` you would use the command '99992' to arm. And '99991' to disarm.
 All commands sent to the Ademco are as if you were typing directly on the remove alarm keypad.
 
+Flow example credit goes to Patrik Akerfeldt
 ![Flow Example](https://github.com/pakerfeldt/node-red-contrib-envisalink/raw/master/images/example-flows.png)
 
 # Authors
 
 [Chris Thierman] 
+
+based on DSC version by:
 
 [Patrik Åkerfeldt]
 
