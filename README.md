@@ -1,8 +1,8 @@
 ![Node-RED Modbus](http://b.repl.ca/v1/Node--RED-Modbus-green.png)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![NPM version](https://badge.fury.io/js/node-red-contrib-envisalink.png)](https://www.npmjs.com/package/node-red-contrib-envisalink)
-# node-red-contrib-envisalink
+[![NPM version](https://badge.fury.io/js/node-red-contrib-envisalink.png)](https://www.npmjs.com/package/node-red-contrib-envisalink-ademco)
+# node-red-contrib-envisalink-ademco
 [DSC alarm systems] integration with [Node-RED] using the [EnvisaLink] hardware.
 
 This node allows you to listen to state changes in your Honeywell Ademco alarm as well as sending
@@ -34,6 +34,7 @@ All commands sent to the Ademco are as if you were typing directly on the remove
 # Authors
 
 [Chris Thierman] 
+
 [Patrik Åkerfeldt]
 
 ### History
