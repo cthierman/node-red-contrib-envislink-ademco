@@ -29,13 +29,11 @@ EnvisaLink.prototype.connect = function () {
   this.shouldReconnect = true;
   this.cid = {};
 
-// CET: added log message Feb 8/2020
   this.emit('log-debug'," Making connection to host:"+ this.options.host +" port:"+ this.options.port);
 
   this.connection = net.createConnection({ port: this.options.port, host: this.options.host })
 
   this.connection.on('error', function (ex) {
-    _this.emit('log-debug'," error connecting ");
     _this.emit('log-error', ' Envisalink Error connection error:' + ex)
 //    _this.emit('log-error', '' + ex)
     _this.emit('error', ex)
@@ -57,12 +55,12 @@ EnvisaLink.prototype.connect = function () {
 
   this.connection.on('data', function (data) {
     var dataslice = data.toString().replace(/[\n\r]/g, '|').split('|');
-    _this.emit('log-debug', " Entering on data connection... dataslice.length="+dataslice.length+" dataslice[0]='"+dataslice[0]+"'");
+ //   _this.emit('log-debug', " Entering on data connection... dataslice.length="+dataslice.length+" dataslice[0]='"+dataslice[0]+"'");
 
     for (var i = 0; i < dataslice.length; i++) {
       var datapacket = dataslice[i]
       if (datapacket !== '') {
-        _this.emit('log-debug', " for Loop dataslice["+i+"]='"+dataslice[i]+"' datapacket='"+datapacket+"'");
+//        _this.emit('log-debug', " for Loop dataslice["+i+"]='"+dataslice[i]+"' datapacket='"+datapacket+"'");
 	if ( datapacket.substring(0, 5) === 'Login' ) {
           _this.emit('log-trace', 'Login requested. Sending response. ' + _this.options.password)
 
@@ -88,7 +86,7 @@ EnvisaLink.prototype.connect = function () {
 
 
           if (tpi) {
-	    _this.emit('log-debug', " looking up command command='"+ command +"' tpi.action='"+ tpi.action +"'");
+//	    _this.emit('log-debug', " looking up command command='"+ command +"' tpi.action='"+ tpi.action +"'");
             if (tpi.bytes === '' || tpi.bytes === 0) {
               _this.emit('log-warn', tpi.pre + ' - ' + tpi.post)
             } else {
