@@ -28,6 +28,9 @@ EnvisaLink.prototype.connect = function () {
   this.systems = undefined;
   this.shouldReconnect = true;
   this.cid = {};
+  this.lastmessage = new Date();
+  this.timeout = setTimeout( Handle_Timer(), 20000 ); // Check every 20 seconds...
+
 
   this.emit('log-debug'," Making connection to host:"+ this.options.host +" port:"+ this.options.port);
 
@@ -54,6 +57,8 @@ EnvisaLink.prototype.connect = function () {
   })
 
   this.connection.on('data', function (data) {
+    this.lastmessage = new Date(); // Everytime a message comes in, reset the lastmessage timer
+
     var dataslice = data.toString().replace(/[\n\r]/g, '|').split('|');
  //   _this.emit('log-debug', " Entering on data connection... dataslice.length="+dataslice.length+" dataslice[0]='"+dataslice[0]+"'");
 
@@ -110,6 +115,14 @@ EnvisaLink.prototype.connect = function () {
       }
     }
   })
+
+  function Handle_Timer() {
+    if ( ( Date() - this.lastmessage ) / 1000 >  20 ) { // we didn't receive any messages for > 20 seconds. Assume dropped connect.
+	this.emit('disconnect');
+    } else {
+	this.timeout = setTimeout( Handle_Timer(), 20000 ); // Check every 20 seconds...
+    }
+  };
 
   function updateZone (tpi, data) {
 // now, what I need to do here is parse the data packet for parameters, in this case it's one parameter an
